@@ -1,30 +1,20 @@
-import { FormStyle, Button1, Input, TopDiv, Options, Toastx } from "./style";
+import { FormStyle, Button1, Input, TopDiv, Options } from "./style";
 import Logo from "../../assets/Logo.png";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-import * as yup from "yup";
+
 import Api from "../../services/api";
 import { toast } from "react-toastify";
+import Schema from "./validetor";
 
 const SignupPages = ({ navigate }) => {
-  const schema = yup.object().shape({
-    name: yup.string().required("nome obrigatorio!"),
-    password: yup.string().required("Senha obrigatorio!"),
-    confirmPassword: yup
-      .string()
-      .oneOf([yup.ref("password"), null], "Senhas não combinam!"),
-    email: yup.string().required("Email obrigatorio!!").email(),
-    bio: yup.string().required("Fale um pouco sobre você!"),
-    contact: yup.string().required("Deixe seu contato!"),
-  });
-
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(Schema),
   });
   const onSubmit = (data) => {
     Api.post(`/users`, data)
@@ -37,7 +27,7 @@ const SignupPages = ({ navigate }) => {
         console.log(err);
       });
   };
-  console.log(errors);
+
   return (
     <>
       <TopDiv>
