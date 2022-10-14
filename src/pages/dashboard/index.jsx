@@ -1,25 +1,16 @@
-import { Header, Main, Section } from "./style";
+import { Main } from "./style";
 import Logo from "../../assets/Logo.png";
-import { Link } from "react-router-dom";
 
-const DashboardPage = ({ dataUser, user }) => {
-  console.log(dataUser);
+import { useContext } from "react";
+import { DataContext } from "../../contexts/DataContext/DataContext";
+import HeaderDashboard from "../../components/mainHeader";
+import SectionUser from "../../components/sectionUser";
+
+const DashboardPage = () => {
+  const { user, dataUser } = useContext(DataContext);
   return (
     <>
-      <Header>
-        <div>
-          <img src={Logo} alt="" />
-          <Link
-            className="logOutButton"
-            to="/"
-            onClick={() => {
-              localStorage.clear();
-            }}
-          >
-            Sair
-          </Link>
-        </div>
-      </Header>
+      <HeaderDashboard Logo={Logo} />
 
       {!user ? (
         <Main>
@@ -28,12 +19,7 @@ const DashboardPage = ({ dataUser, user }) => {
         </Main>
       ) : (
         <>
-          <Section>
-            <div>
-              <h2>Ola, {dataUser.user.name}!</h2>
-              <p> {dataUser.user.course_module}.</p>
-            </div>
-          </Section>
+          <SectionUser dataUser={dataUser} />
           <Main>
             <h3>Que pena! Estamos em desenvolvimento :(</h3>
             <p>

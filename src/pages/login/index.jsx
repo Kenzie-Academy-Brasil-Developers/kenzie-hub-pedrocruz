@@ -1,23 +1,24 @@
 import { FormStyle, Button1, Input } from "./style";
 import Logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
-import * as yup from "yup";
+
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../../services/api";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { DataContext } from "../../contexts/DataContext/DataContext";
+import Schema from "./validator";
 
-const LoginPage = ({ navigate, setDataUser, setUser }) => {
-  const schema = yup.object().shape({
-    password: yup.string().required("Senha obrigatorio!"),
-    email: yup.string().required("Email obrigatorio!!").email(),
-  });
+const LoginPage = () => {
+  const { setUser, setDataUser, navigate } = useContext(DataContext);
+
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(Schema),
   });
   const onSubmit = (data) => {
     Api.post(`/sessions`, data)
@@ -35,7 +36,7 @@ const LoginPage = ({ navigate, setDataUser, setUser }) => {
         console.log(err);
       });
   };
-  console.log(errors);
+
   return (
     <>
       <img src={Logo} alt="Logo" className="img" />
