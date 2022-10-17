@@ -67,7 +67,12 @@ export default createGlobalStyle`
     color: var(--main-color3);
     height: 30px;
   }
-  
+  .eye {
+    background-color: transparent;
+    display: flex;
+    border: none;
+    cursor: pointer;
+  }
   /* width */
   ::-webkit-scrollbar {
     width: 10px;
@@ -100,7 +105,7 @@ export default createGlobalStyle`
     display: flex;
     justify-content: center;
   width: 100%;
-  max-width: 300px;
+  max-width: 350px;
   height: 40px;
   background-color: var(--main-color7);
   border: none;
@@ -120,4 +125,6 @@ export default createGlobalStyle`
     font-size: var(--text-size3);
     border-radius: 4px;
   }
+  
+  
 `;

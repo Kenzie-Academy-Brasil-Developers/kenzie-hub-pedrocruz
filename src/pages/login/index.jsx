@@ -6,13 +6,15 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import Api from "../../services/api";
 import { toast } from "react-toastify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { DataContext } from "../../contexts/DataContext/DataContext";
 import Schema from "./validator";
+import Button from "../../components/buttonLoginRegister";
+import PasswordInput from "../../components/passwordVisibilte";
 
 const LoginPage = () => {
   const { setUser, setDataUser, navigate } = useContext(DataContext);
-
+  const { show, setShow } = useState();
   const {
     register,
     handleSubmit,
@@ -47,13 +49,9 @@ const LoginPage = () => {
           <Input placeholder="email" {...register(`email`)} />
           <p>{errors.email?.message}</p>
           <label>Senha</label>
-          <Input
-            type="password"
-            placeholder="Senha"
-            {...register(`password`)}
-          />
+          <PasswordInput placeholder="Senha" register={register} />
           <p>{errors.password?.message}</p>
-          <Button1>Entar</Button1>
+          <Button>Entar</Button>
         </form>
         <div>
           <h4>Ainda não possui uma conta ?</h4>

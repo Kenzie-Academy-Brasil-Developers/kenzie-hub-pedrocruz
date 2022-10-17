@@ -16,6 +16,11 @@ export const FormStyle = styled.div`
     font-size: var(--text-size2);
     padding: 20px 0;
   }
+  p {
+    text-align: center;
+    font-size: var(--text-size4);
+    color: var(--main-color2);
+  }
 
   form {
     width: 80%;
