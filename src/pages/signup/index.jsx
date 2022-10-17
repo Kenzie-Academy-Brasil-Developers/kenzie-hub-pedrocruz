@@ -4,11 +4,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 
+import { useContext } from "react";
 import Api from "../../services/api";
 import { toast } from "react-toastify";
 import Schema from "./validetor";
+import { DataContext } from "../../contexts/DataContext/DataContext";
+import Button from "../../components/buttonLoginRegister";
 
-const SignupPages = ({ navigate }) => {
+const SignupPages = () => {
+  const { navigate } = useContext(DataContext);
   const {
     register,
     handleSubmit,
@@ -80,7 +84,7 @@ const SignupPages = ({ navigate }) => {
               Quarto módulo
             </option>
           </Options>
-          <Button1 type="submit">Entar</Button1>
+          <Button type="submit">Entar</Button>
         </form>
       </FormStyle>
     </>
