@@ -26,7 +26,7 @@ const DashboardPage = () => {
   /*   if (loading) {
     return <LoadingPage />;
   } */
-  console.log(techs);
+
   return user ? (
     <motion.div
       animate={{ opacity: [0, 1], x: [-10, 4, 0], y: [-10, 4, 0] }}
