@@ -74,7 +74,7 @@ export const Input = styled.input`
   padding-left: 10px;
   background-color: var(--main-color6);
 `;
-export const Options = styled.select`
+export const Select = styled.select`
   width: 100%;
   height: 30px;
   border-radius: 4px;
