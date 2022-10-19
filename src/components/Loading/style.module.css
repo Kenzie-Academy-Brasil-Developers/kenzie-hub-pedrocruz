@@ -1,0 +1,16 @@
+.loading {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  border: 6px solid;
+  border-top-color: #f857a6;
+
+  animation: loading 30s cubic-bezier(0.32, 0.27, 1, 1) infinite;
+}
+
+@keyframes loading {
+  to {
+    transform: rotate(50turn);
+  }
+}

@@ -1,11 +1,14 @@
+import { useContext } from "react";
+import { DataContext } from "../../contexts/DataContext/DataContext";
 import { Section } from "./style";
 
-const SectionUser = ({ dataUser }) => {
+const SectionUser = () => {
+  const { dataUser } = useContext(DataContext);
   return (
     <Section>
       <div>
-        <h2>Ola, {dataUser.user.name}!</h2>
-        <p> {dataUser.user.course_module}.</p>
+        <h2>Ola, {dataUser.name}!</h2>
+        <p>{dataUser.course_module}</p>
       </div>
     </Section>
   );

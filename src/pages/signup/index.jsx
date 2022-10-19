@@ -1,18 +1,18 @@
-import { FormStyle, Button1, Input, TopDiv, Options } from "./style";
+import { FormStyle, Input, TopDiv, Select } from "./style";
 import Logo from "../../assets/Logo.png";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import { useContext } from "react";
-import Api from "../../services/api";
-import { toast } from "react-toastify";
+
 import Schema from "./validetor";
-import { DataContext } from "../../contexts/DataContext/DataContext";
+
 import Button from "../../components/buttonLoginRegister";
+import { DataContext } from "../../contexts/DataContext/DataContext";
 
 const SignupPages = () => {
-  const { navigate } = useContext(DataContext);
+  const { signupSubmit } = useContext(DataContext);
   const {
     register,
     handleSubmit,
@@ -20,20 +20,13 @@ const SignupPages = () => {
   } = useForm({
     resolver: yupResolver(Schema),
   });
-  const onSubmit = (data) => {
-    Api.post(`/users`, data)
-      .then((resp) => {
-        toast.success("Registro Realizado!!");
-        navigate("/");
-      })
-      .catch((err) => {
-        toast.error("Algo deu errado!");
-        console.log(err);
-      });
-  };
 
   return (
-    <>
+    <motion.div
+      animate={{ opacity: [0, 1], x: [-10, 4, 0], y: [-10, 4, 0] }}
+      exit={{ opacity: 0, x: -10 }}
+      transition={{ ease: "easeInOut", duration: 1 }}
+    >
       <TopDiv>
         <img src={Logo} alt="Logo" />
         <Link to="/" className="logOutButton">
@@ -44,7 +37,7 @@ const SignupPages = () => {
       <FormStyle>
         <h1>Crie sua conta</h1>
         <span>Rapido e grátis, vamos nessa</span>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(signupSubmit)}>
           <label>Nome</label>
           <Input placeholder="Nome" {...register(`name`)} />
           <p>{errors.name?.message}</p>
@@ -52,10 +45,15 @@ const SignupPages = () => {
           <Input placeholder="Email" {...register(`email`)} />
           <p>{errors.email?.message}</p>
           <label>Senha</label>
-          <Input placeholder="Senha" {...register(`password`)} />
+          <Input
+            placeholder="Senha"
+            type="password"
+            {...register(`password`)}
+          />
           <p>{errors.password?.message}</p>
           <label>Confirmar Senha</label>
           <Input
+            type="password"
             placeholder="Confirmar Senha"
             {...register(`confirmPassword`)}
           />
@@ -70,7 +68,7 @@ const SignupPages = () => {
           <Input placeholder="ex:(99)99999999" {...register(`contact`)} />
           <p>{errors.contact?.message}</p>
           <label>Selecionar módulo</label>
-          <Options id="module" {...register(`course_module`)}>
+          <Select id="module" {...register(`course_module`)}>
             <option value="Primeiro módulo (Introdução ao Frontend)">
               Primeiro módulo
             </option>
@@ -83,11 +81,11 @@ const SignupPages = () => {
             <option value="Quarto módulo (Backend Avançado)">
               Quarto módulo
             </option>
-          </Options>
+          </Select>
           <Button type="submit">Entar</Button>
         </form>
       </FormStyle>
-    </>
+    </motion.div>
   );
 };
 export default SignupPages;

@@ -1,20 +1,19 @@
-import { FormStyle, Button1, Input } from "./style";
+import { FormStyle, Input } from "./style";
 import Logo from "../../assets/Logo.png";
 import { Link } from "react-router-dom";
-
+import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import Api from "../../services/api";
-import { toast } from "react-toastify";
-import { useContext, useState } from "react";
+
+import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext/DataContext";
 import Schema from "./validator";
 import Button from "../../components/buttonLoginRegister";
 import PasswordInput from "../../components/passwordVisibilte";
 
 const LoginPage = () => {
-  const { setUser, setDataUser, navigate } = useContext(DataContext);
-  const { show, setShow } = useState();
+  const { LoginSubmit } = useContext(DataContext);
+
   const {
     register,
     handleSubmit,
@@ -22,29 +21,17 @@ const LoginPage = () => {
   } = useForm({
     resolver: yupResolver(Schema),
   });
-  const onSubmit = (data) => {
-    Api.post(`/sessions`, data)
-      .then((resp) => {
-        window.localStorage.clear();
-        window.localStorage.setItem("authToken", resp.data.token);
-        window.localStorage.setItem("authTokenId", resp.data.user.id);
-        setUser(true);
-        toast.success(`Bem vindo,${resp.data.user.name}!`);
-        setDataUser(resp.data);
-        navigate("/dashboard");
-      })
-      .catch((err) => {
-        toast.error("algo deu errado :(");
-        console.log(err);
-      });
-  };
 
   return (
-    <>
+    <motion.div
+      animate={{ opacity: [0, 1], x: [-10, 4, 0], y: [-10, 4, 0] }}
+      exit={{ opacity: 0, x: -40 }}
+      transition={{ ease: "easeInOut", duration: 2 }}
+    >
       <img src={Logo} alt="Logo" className="img" />
       <FormStyle>
         <h1>Login</h1>
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <form onSubmit={handleSubmit(LoginSubmit)}>
           <label>Email</label>
           <Input placeholder="email" {...register(`email`)} />
           <p>{errors.email?.message}</p>
@@ -60,7 +47,7 @@ const LoginPage = () => {
           </Link>
         </div>
       </FormStyle>
-    </>
+    </motion.div>
   );
 };
 export default LoginPage;

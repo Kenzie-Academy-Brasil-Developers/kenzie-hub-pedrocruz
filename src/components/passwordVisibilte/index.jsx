@@ -14,7 +14,7 @@ const PasswordInput = ({ register }) => {
         placeholder="Senha"
         {...register("password")}
       />
-      <button className="eye" onClick={toggleBtn}>
+      <button className="eye" type="button" onClick={toggleBtn}>
         {visibility ? <AiOutlineEyeInvisible /> : <AiOutlineEye />}
       </button>
     </DivInput>

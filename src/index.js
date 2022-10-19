@@ -4,13 +4,16 @@ import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
 import DataProvider from "./contexts/DataContext/DataContext";
+import TechProvider from "./contexts/TechContext/techContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <DataProvider>
-        <App />
+        <TechProvider>
+          <App />
+        </TechProvider>
       </DataProvider>
     </BrowserRouter>
   </React.StrictMode>
