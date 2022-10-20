@@ -6,10 +6,9 @@ import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useContext } from "react";
 
-import Schema from "./validetor";
-
 import Button from "../../components/buttonLoginRegister";
 import { DataContext } from "../../contexts/DataContext/DataContext";
+import Schema from "../../validators/signup/signup";
 
 const SignupPages = () => {
   const { signupSubmit } = useContext(DataContext);

@@ -6,7 +6,7 @@ import Api from "../../services/api";
 export const TechContext = createContext({});
 
 const TechProvider = ({ children }) => {
-  const { techs, setTechs, token, tokenId, user, loading } =
+  const { techs, setTechs, token, tokenId, user, loading, setLoading } =
     useContext(DataContext);
   const [openModal, setOpenModal] = useState(false);
   const [modalUpdate, setModalUpdate] = useState(false);
@@ -37,12 +37,15 @@ const TechProvider = ({ children }) => {
   };
 
   const addTechs = async (data) => {
-    console.log(data);
+    setLoading(true);
     try {
       const resp = await Api.post("users/techs", data);
       setTechs([...techs, resp.data]);
       setOpenModal(false);
       toast.success("Tecnologia adicionada!");
+      setTimeout(() => {
+        setLoading(false);
+      }, 500);
     } catch (error) {
       toast.error(error.message);
     }
@@ -77,6 +80,7 @@ const TechProvider = ({ children }) => {
         setOpenModal,
         modalUpdate,
         setModalUpdate,
+        setLoading,
         user,
         loading,
       }}

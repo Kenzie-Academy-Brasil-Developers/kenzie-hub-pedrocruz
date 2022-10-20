@@ -3,9 +3,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { motion } from "framer-motion";
 import Button from "../buttonLoginRegister";
-import SchemaModal from "./schema";
+
 import { useContext } from "react";
 import { TechContext } from "../../contexts/TechContext/techContext";
+import SchemaModal from "../../validators/modal/modal";
 
 const Modal = ({ handleModal }) => {
   const { addTechs } = useContext(TechContext);

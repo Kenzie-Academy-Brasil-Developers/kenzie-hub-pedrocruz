@@ -7,9 +7,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 
 import { useContext } from "react";
 import { DataContext } from "../../contexts/DataContext/DataContext";
-import Schema from "./validator";
+
 import Button from "../../components/buttonLoginRegister";
 import PasswordInput from "../../components/passwordVisibilte";
+import Schema from "../../validators/login/login";
 
 const LoginPage = () => {
   const { LoginSubmit } = useContext(DataContext);

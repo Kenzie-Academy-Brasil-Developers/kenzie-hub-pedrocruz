@@ -15,6 +15,7 @@ const DataProvider = ({ children }) => {
   const token = localStorage.getItem("Token");
 
   const LoginSubmit = (data) => {
+    setLoading(true);
     Api.post("/sessions", data)
       .then((resp) => {
         window.localStorage.clear();
@@ -29,13 +30,17 @@ const DataProvider = ({ children }) => {
       .catch((err) => {
         toast.error("algo deu errado :(");
         console.log(err);
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false);
+        }, 1000);
       });
   };
   const signupSubmit = (data) => {
+    setLoading(true);
     Api.post(`/users`, data)
       .then((resp) => {
-        setLoading(false);
-
         toast.success("Registro Realizado!!");
         navigate("/");
       })
@@ -46,7 +51,7 @@ const DataProvider = ({ children }) => {
       .finally(() => {
         setTimeout(() => {
           setLoading(false);
-        }, 5000);
+        }, 2000);
       });
   };
 
