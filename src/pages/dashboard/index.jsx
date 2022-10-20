@@ -24,9 +24,6 @@ const DashboardPage = () => {
     handleModalUpdate,
     modalUpdate,
   } = useContext(TechContext);
-  /*   if (loading) {
-    return <LoadingPage />;
-  } */
 
   return user ? (
     <motion.div
@@ -34,6 +31,7 @@ const DashboardPage = () => {
       exit={{ opacity: 0, x: -40 }}
       transition={{ ease: "easeInOut", duration: 2 }}
     >
+      {loading && <LoadingPage />}
       {openModal && <Modal handleModal={handleModal} />}
       {modalUpdate && <ModalUpdate handleModalUpdate={handleModalUpdate} />}
       <HeaderDashboard Logo={Logo} />
