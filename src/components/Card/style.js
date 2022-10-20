@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const TechList = styled.div`
+const CardList = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -26,9 +26,7 @@ export const TechList = styled.div`
       background-color: var(--main-color5);
     }
   }
-  @media (max-width: 630px) {
-    width: 290px;
-  }
+
   h3 {
     flex: 1;
 
@@ -36,9 +34,9 @@ export const TechList = styled.div`
     font-size: 10px;
   }
   p {
-    font-size: 0.5rem;
-    font-weight: 400;
-    font-size: 12px;
+    font-size: var(--text-size4);
+    color: var(--main-color6);
+    font-weight: 100;
   }
   button {
     border: none;
@@ -51,3 +49,4 @@ export const TechList = styled.div`
     cursor: pointer;
   }
 `;
+export default CardList;
