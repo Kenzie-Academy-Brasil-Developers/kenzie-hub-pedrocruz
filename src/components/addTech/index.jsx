@@ -1,4 +1,5 @@
 import AddSection from "./style";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 const AddTech = ({ handleModal }) => {
   return (
@@ -10,7 +11,7 @@ const AddTech = ({ handleModal }) => {
           handleModal();
         }}
       >
-        +
+        <AiOutlinePlusCircle />
       </button>
     </AddSection>
   );

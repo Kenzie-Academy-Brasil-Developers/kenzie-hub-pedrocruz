@@ -7,6 +7,10 @@ export const TopDiv = styled.header`
   align-items: center;
   justify-content: space-between;
   margin: 0 auto;
+
+  @media (max-width: 400px) {
+    width: 80%;
+  }
 `;
 
 export const FormStyle = styled.div`

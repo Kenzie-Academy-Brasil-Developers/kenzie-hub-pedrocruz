@@ -11,6 +11,7 @@ import AddTech from "../../components/addTech";
 import { TechContext } from "../../contexts/TechContext/techContext";
 import LoadingPage from "../../components/Loading";
 import { Navigate } from "react-router-dom";
+import ModalUpdate from "../../components/ModalUpdate";
 
 const DashboardPage = () => {
   const {
@@ -19,9 +20,9 @@ const DashboardPage = () => {
     openModal,
     loading,
     techs,
-    token,
     user,
-    showModalUpdate,
+    handleModalUpdate,
+    modalUpdate,
   } = useContext(TechContext);
   /*   if (loading) {
     return <LoadingPage />;
@@ -34,6 +35,7 @@ const DashboardPage = () => {
       transition={{ ease: "easeInOut", duration: 2 }}
     >
       {openModal && <Modal handleModal={handleModal} />}
+      {modalUpdate && <ModalUpdate handleModalUpdate={handleModalUpdate} />}
       <HeaderDashboard Logo={Logo} />
       <>
         <SectionUser dataUser={dataUser} />
@@ -46,6 +48,7 @@ const DashboardPage = () => {
               techName={tech.title}
               techLevel={tech.status}
               id={tech.id}
+              tech={tech}
             />
           ))}
         </Container>

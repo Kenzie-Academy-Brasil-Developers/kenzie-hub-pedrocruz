@@ -9,13 +9,22 @@ const TechProvider = ({ children }) => {
   const { techs, setTechs, token, tokenId, user, loading } =
     useContext(DataContext);
   const [openModal, setOpenModal] = useState(false);
-  const [showModalUpdate, setShowModalUpdate] = useState(false);
+  const [modalUpdate, setModalUpdate] = useState(false);
   const [techSelected, setTechSelected] = useState({});
 
   /* função para alterar propriedades */
-  const getTech = (tech) => {
-    setShowModalUpdate(true);
+  const chosenTech = (tech) => {
+    handleModalUpdate();
     setTechSelected(tech);
+  };
+
+  const handleModalUpdate = () => {
+    if (modalUpdate === false) {
+      setModalUpdate(true);
+    }
+    if (modalUpdate === true) {
+      setModalUpdate(false);
+    }
   };
 
   const handleModal = () => {
@@ -59,14 +68,15 @@ const TechProvider = ({ children }) => {
         techs,
         setTechs,
         handleModal,
-        getTech,
+        handleModalUpdate,
+        chosenTech,
         techSelected,
         addTechs,
         deleteTechs,
         openModal,
         setOpenModal,
-        showModalUpdate,
-        setShowModalUpdate,
+        modalUpdate,
+        setModalUpdate,
         user,
         loading,
       }}
