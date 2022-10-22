@@ -1,6 +1,6 @@
 import { FormStyle, Input } from "./style";
 import Logo from "../../assets/Logo.png";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -13,7 +13,7 @@ import PasswordInput from "../../components/passwordVisibilte";
 import Schema from "../../validators/login/login";
 
 const LoginPage = () => {
-  const { LoginSubmit } = useContext(DataContext);
+  const { LoginSubmit, token } = useContext(DataContext);
 
   const {
     register,
@@ -23,7 +23,7 @@ const LoginPage = () => {
     resolver: yupResolver(Schema),
   });
 
-  return (
+  return !token ? (
     <motion.div
       animate={{ opacity: [0, 1], x: [-10, 4, 0], y: [-10, 4, 0] }}
       exit={{ opacity: 0, x: -40 }}
@@ -49,6 +49,8 @@ const LoginPage = () => {
         </div>
       </FormStyle>
     </motion.div>
+  ) : (
+    <Navigate to="/dashboard" />
   );
 };
 export default LoginPage;
