@@ -20,6 +20,7 @@ const DashboardPage = () => {
     openModal,
     loading,
     techs,
+    token,
     user,
     handleModalUpdate,
     modalUpdate,

@@ -22,10 +22,10 @@ const DataProvider = ({ children }) => {
         localStorage.setItem("Token", resp.data.token);
         localStorage.setItem("TokenId", resp.data.user.id);
         setUser(true);
+        navigate("/dashboard");
         toast.success(`Bem vindo,${resp.data.user.name}!`);
         setDataUser(resp.data.user);
         setTechs(resp.data.user.techs);
-        navigate("/dashboard");
       })
       .catch((err) => {
         toast.error("algo deu errado :(");
@@ -55,20 +55,20 @@ const DataProvider = ({ children }) => {
       });
   };
 
-  const loadUser = async () => {
-    if (token) {
-      try {
-        const resp = await Api.get("/profile");
-
-        console.log(resp);
-        setDataUser(resp.data);
-        setTechs(resp.data.techs);
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  };
   useEffect(() => {
+    async function loadUser() {
+      if (token) {
+        try {
+          const { data } = await Api.get("profile");
+          setDataUser(data);
+          setUser(true);
+          setTechs(data.techs);
+        } catch (err) {
+          console.log(err);
+        }
+      }
+      setLoading(false);
+    }
     loadUser();
   }, [techs]);
 
