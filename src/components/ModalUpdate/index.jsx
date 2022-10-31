@@ -5,18 +5,24 @@ import { motion } from "framer-motion";
 import Button from "../buttonLoginRegister";
 
 import { useContext } from "react";
-import { TechContext } from "../../contexts/TechContext/techContext";
+import { iEditTech, TechContext } from "../../contexts/TechContext/techContext";
 import { toast } from "react-toastify";
 import Api from "../../services/api";
+import { iTech } from "../../contexts/DataContext/DataContext";
 
-const ModalUpdate = ({ handleModalUpdate }) => {
-  const { addTechs, techSelected } = useContext(TechContext);
+interface iRegisterModal {
+  title: string;
+  status: string;
+}
 
-  const { register, handleSubmit } = useForm({
+const ModalUpdate = () => {
+  const { techSelected, handleModalUpdate } = useContext(TechContext);
+
+  const { register, handleSubmit } = useForm<iRegisterModal>({
     defaultValues: { title: techSelected.title, status: techSelected.status },
   });
 
-  const editTechs = async (tech) => {
+  const editTechs = async (tech: iEditTech) => {
     try {
       await Api.put(`users/techs/${techSelected.id}`, tech);
       handleModalUpdate();
@@ -48,7 +54,7 @@ const ModalUpdate = ({ handleModalUpdate }) => {
               <option value="Avançado">Avançado</option>
             </select>
 
-            <Button type="submit">Cadastrar</Button>
+            <Button>Cadastrar</Button>
           </form>
         </main>
       </RegisterTech>

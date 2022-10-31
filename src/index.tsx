@@ -6,7 +6,9 @@ import App from "./App";
 import DataProvider from "./contexts/DataContext/DataContext";
 import TechProvider from "./contexts/TechContext/techContext";
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(
+  document.getElementById("root") as HTMLElement
+);
 root.render(
   <React.StrictMode>
     <BrowserRouter>

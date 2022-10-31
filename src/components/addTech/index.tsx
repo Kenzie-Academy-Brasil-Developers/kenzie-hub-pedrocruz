@@ -1,7 +1,10 @@
 import AddSection from "./style";
 import { AiOutlinePlusCircle } from "react-icons/ai";
+import { useContext } from "react";
+import { TechContext } from "../../contexts/TechContext/techContext";
 
-const AddTech = ({ handleModal }) => {
+const AddTech = () => {
+  const { handleModal } = useContext(TechContext);
   return (
     <AddSection>
       <h2>Tecnologias</h2>

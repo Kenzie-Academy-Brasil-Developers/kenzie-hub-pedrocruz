@@ -2,8 +2,8 @@ import { useState } from "react";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import DivInput from "./style";
 
-const PasswordInput = ({ register }) => {
-  const [visibility, setVisibility] = useState(false);
+const PasswordInput = ({ register }: any) => {
+  const [visibility, setVisibility] = useState<boolean>(false);
   const toggleBtn = () => {
     setVisibility((prevState) => !prevState);
   };

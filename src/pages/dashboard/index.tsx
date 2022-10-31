@@ -12,18 +12,13 @@ import { TechContext } from "../../contexts/TechContext/techContext";
 import LoadingPage from "../../components/Loading";
 import { Navigate } from "react-router-dom";
 import ModalUpdate from "../../components/ModalUpdate";
+import { DataContext } from "../../contexts/DataContext/DataContext";
 
 const DashboardPage = () => {
-  const {
-    dataUser,
-    handleModal,
-    openModal,
-    loading,
-    techs,
-    user,
-    handleModalUpdate,
-    modalUpdate,
-  } = useContext(TechContext);
+  const { handleModal, openModal, handleModalUpdate, modalUpdate } =
+    useContext(TechContext);
+  const { user, techs, loading, userModule, userName } =
+    useContext(DataContext);
 
   return user ? (
     <motion.div
@@ -33,16 +28,15 @@ const DashboardPage = () => {
     >
       {loading && <LoadingPage />}
       {openModal && <Modal handleModal={handleModal} />}
-      {modalUpdate && <ModalUpdate handleModalUpdate={handleModalUpdate} />}
-      <HeaderDashboard Logo={Logo} />
+      {modalUpdate && <ModalUpdate />}
+      <HeaderDashboard />
       <>
-        <SectionUser dataUser={dataUser} />
+        <SectionUser userModule={userModule} userName={userName} />
         <Container>
-          <AddTech handleModal={handleModal} />
+          <AddTech />
 
           {techs.map((tech) => (
             <Card
-              key={tech.id}
               techName={tech.title}
               techLevel={tech.status}
               id={tech.id}

@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import { Header } from "./style";
+import Logo from "../../assets/Logo.png";
 
-const HeaderDashboard = ({ Logo }) => {
+const HeaderDashboard = () => {
   return (
     <Header>
       <div>

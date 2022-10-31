@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useContext } from "react";
 
 import Button from "../../components/buttonLoginRegister";
-import { DataContext } from "../../contexts/DataContext/DataContext";
+import { DataContext, iSignup } from "../../contexts/DataContext/DataContext";
 import Schema from "../../validators/signup/signup";
 
 const SignupPages = () => {
@@ -16,7 +16,7 @@ const SignupPages = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<iSignup>({
     resolver: yupResolver(Schema),
   });
 
@@ -81,7 +81,7 @@ const SignupPages = () => {
               Quarto módulo
             </option>
           </Select>
-          <Button type="submit">Entar</Button>
+          <Button>Entar</Button>
         </form>
       </FormStyle>
     </motion.div>
