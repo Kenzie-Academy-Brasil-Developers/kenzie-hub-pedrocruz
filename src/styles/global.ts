@@ -9,6 +9,8 @@ export default createGlobalStyle`
         --main-color5:#212529;
         --main-color6:#343B41;
         --main-color7:#868E96;
+         --main-color8:#868E96;
+        
 
         --positive-color:#3FE864;
         --negative-color:#E83F5B;
